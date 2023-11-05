@@ -24,7 +24,7 @@ This project enables integration with Zoho CRM to perform lead-related operation
 
 Before running the project, you need to set up your environment by configuring environment variables. You can create a `.env` file and add the following variables with your Zoho CRM API credentials:
 
-```env
+
 clientID=YOUR_CLIENT_ID
 clientSecret=YOUR_CLIENT_SECRET
 redirectUri=YOUR_REDIRECT_URI
