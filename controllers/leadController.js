@@ -8,30 +8,6 @@ const clientSecret = process.env.clientSecret;
 const redirectUri = process.env.redirectUri;
 
 
-
-
-
-const authenticateWithZoho = async () => {
-
-    try {
-        const authResponse = await axios.post('https://accounts.zoho.com/oauth/v2/token', qs.stringify({
-            code: '1000.530214f6faf91e9c272fff59d6aabf4b.4e03367c02e79fd4ba2badc5f6033ad6', // The authorization code from the OAuth flow
-            client_id: clientId,
-            client_secret: clientSecret,
-            redirect_uri: redirectUri,
-            grant_type: 'authorization_code',
-        }));
-
-        console.log(authResponse.data)
-        return authResponse.data;
-    } catch (error) {
-        console.error('Zoho CRM authentication error:', error);
-        return null;
-    }
-};
-
-
-
 // Create a lead in Zoho CRM
 const createLeadInZoho = async (accessToken, leadData) => {
     try {
@@ -76,21 +52,6 @@ const fetchLeadsFromZoho = async (accessToken) => {
     }
 };
 
-// Fetch a single lead from Zoho CRM
-const fetchLeadFromZoho = async (accessToken, leadId) => {
-    try {
-        const leadResponse = await axios.get(`https://www.zohoapis.com/crm/v2/Leads/${leadId}`, {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`,
-            },
-        });
-
-        return leadResponse;
-    } catch (error) {
-        console.error('Zoho CRM lead fetch error:', error);
-        return null;
-    }
-};
 
 // Update a lead in Zoho CRM
 const updateLeadInZoho = async (accessToken, leadId, leadData) => {
@@ -126,4 +87,4 @@ const deleteLeadInZoho = async (accessToken, leadId) => {
 };
 
 
-module.exports = { authenticateWithZoho, createLeadInZoho, fetchLeadsFromZoho, fetchLeadFromZoho, updateLeadInZoho, deleteLeadInZoho }
+module.exports = {  createLeadInZoho, fetchLeadsFromZoho, updateLeadInZoho, deleteLeadInZoho }
